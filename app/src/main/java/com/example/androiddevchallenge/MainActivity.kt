@@ -18,17 +18,11 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.TextToolbar
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -45,20 +39,8 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun MyApp() {
     Surface(color = MaterialTheme.colors.background) {
-        Column {
-            Surface(
-                color = MaterialTheme.colors.surface,
-                modifier = Modifier.fillMaxWidth(),
-                elevation = 4.dp,
-            ) {
-                Text(
-                    text = "Pick a dog!",
-                    modifier = Modifier.padding(16.dp),
-                    style = MaterialTheme.typography.h6,
-                )
-            }
-            DogList(SampleData.dogs)
-        }
+        val navController = rememberNavController()
+        AppNavHost(navController)
     }
 }
 

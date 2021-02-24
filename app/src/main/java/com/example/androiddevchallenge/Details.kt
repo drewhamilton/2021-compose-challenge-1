@@ -46,4 +46,4 @@ import androidx.compose.ui.unit.dp
 }
 
 @Preview
-@Composable fun Details() = Details(SampleData.dogs[0])
+@Composable private fun Details() = Details(SampleData.dogs[0])

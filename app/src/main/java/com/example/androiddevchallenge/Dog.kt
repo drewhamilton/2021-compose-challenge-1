@@ -15,8 +15,12 @@
  */
 package com.example.androiddevchallenge
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Dog(
     val name: String,
     val breed: String,
     val age: Int,
-)
+) : Parcelable

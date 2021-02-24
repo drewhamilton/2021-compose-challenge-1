@@ -15,7 +15,7 @@
  */
 package com.example.androiddevchallenge
 
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -28,22 +28,32 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DogList(dogs: List<Dog>) = LazyColumn(
-    modifier = Modifier.fillMaxSize()
+fun DogList(
+    dogs: List<Dog>,
+    onItemClicked: (index: Int) -> Unit,
+    modifier: Modifier = Modifier
+) = LazyColumn(
+    modifier = modifier.fillMaxSize()
 ) {
-    items(dogs.size) {
-        DogItem(dogs[it])
+    items(dogs.size) { index ->
+        val dog = dogs[index]
+        DogItem(dog, Modifier.clickable {
+            onItemClicked(index)
+        })
     }
 }
 
 @Preview(widthDp = 360, heightDp = 640)
 @Composable
-private fun DogList() = DogList(SampleData.dogs)
+private fun DogList() = DogList(SampleData.dogs, onItemClicked = {})
 
 @Composable
-private fun DogItem(dog: Dog) = Text(
+private fun DogItem(
+    dog: Dog,
+    modifier: Modifier = Modifier
+) = Text(
     text = dog.name,
-    modifier = Modifier
+    modifier = modifier
         .padding(16.dp)
         .fillMaxWidth(),
     style = MaterialTheme.typography.body1,
