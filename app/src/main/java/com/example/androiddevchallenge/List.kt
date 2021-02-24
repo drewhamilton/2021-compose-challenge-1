@@ -36,10 +36,10 @@ fun DogList(
     modifier = modifier.fillMaxSize()
 ) {
     items(dogs.size) { index ->
-        val dog = dogs[index]
-        DogItem(dog, Modifier.clickable {
-            onItemClicked(index)
-        })
+        DogItem(
+            dog = dogs[index],
+            modifier = Modifier.clickable { onItemClicked(index) }
+        )
     }
 }
 
